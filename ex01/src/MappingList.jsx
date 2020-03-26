@@ -6,17 +6,24 @@ class MappingList extends Component {
     users = Object.entries(users).map(i => i[1]);
     movies = Object.entries(movies).map(i => i[1]);
 
-    const names = profiles
-      .map(profile => users.filter(u => u.id == profile.userID))
-      .map(p => p[0]);
-
     const favorites = profiles
       .map(profile => movies.filter(m => m.id == profile.favoriteMovieID))
-      .map(p => p[0]);
+      .map(p => p[0].name);
+    const names = profiles
+      .map(profile => users.filter(u => u.id == profile.userID))
+      .map(p => p[0].name);
 
     console.log("NAMES:\n", names, "\nMOVIES:\n", favorites);
 
-    return <div className="container"></div>;
+    return (
+      <div className="container">
+        {movies.map((x, i) => (
+          <p key={x.id}>
+            {names[i]}'s favorite movie is {favorites[i]}!
+          </p>
+        ))}
+      </div>
+    );
   }
 }
 
