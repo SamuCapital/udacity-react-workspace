@@ -13,8 +13,6 @@ class MappingList extends Component {
       .map(profile => users.filter(u => u.id == profile.userID))
       .map(p => p[0].name);
 
-    console.log("NAMES:\n", names, "\nMOVIES:\n", favorites);
-
     return (
       <div className="container">
         {movies.map((x, i) => (
